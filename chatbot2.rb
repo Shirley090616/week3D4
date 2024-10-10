@@ -23,7 +23,12 @@ data = {
 response = HTTP.post(url, headers: headers, body: data.to_json)
 
 response_body = JSON.parse(response.body.to_s)
-response_string = response_body['choices'][0]['text'].strip
+puts "Réponse de l'API : #{response_body.inspect}"
+if  response_body['choices'] && responce_body['choice'].any?
+    response_string = response_body['choices'][0]['text'].strip
 
 puts "Voici 5 parfums de glace :"
 puts response_string
+else
+    puts "Aucune réponse trouvée dans 'choices'."
+end
